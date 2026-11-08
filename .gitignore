@@ -5,3 +5,4 @@ Thumbs.db
 *.zip
 *.tar
 *.tar.gz
+site/digits/*.bin
