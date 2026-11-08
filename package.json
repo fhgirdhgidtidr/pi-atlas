@@ -1,0 +1,8 @@
+{
+  "name": "pi-atlas",
+  "version": "1.2.0",
+  "private": true,
+  "type": "module",
+  "description": "Search one billion decimal digits of pi in your browser.",
+  "scripts": { "test": "node test-pages.mjs" }
+}

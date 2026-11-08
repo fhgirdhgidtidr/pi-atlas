@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f5ef">
+  <title>Pi Atlas — Find your digits in pi</title>
+  <meta name="description" content="Find your number in the first one billion decimal digits of pi. Fast, private, and made for the curious.">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./app.js" type="module"></script>
+</head>
+<body>
+  <header class="site-header wrap">
+    <a href="./" class="wordmark" aria-label="Pi Atlas home"><span class="logo">π</span><span>pi<span class="wordmark-light">atlas</span></span></a>
+    <span class="header-note">A FIELD GUIDE TO INFINITY</span>
+    <button class="text-button about-button" type="button">How it works <span aria-hidden="true">↗</span></button>
+  </header>
+
+  <main class="wrap">
+    <section class="hero" aria-labelledby="title">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="green-dot"></span> FOR THE ENDLESSLY CURIOUS</div>
+        <h1 id="title">Find your place<br>in <em>pi.</em></h1>
+        <p class="intro">A birthday. A lucky number. A string of curiosity.<br class="desktop-break"> Discover where your digits first appear in π.</p>
+      </div>
+      <div class="orbit-art" aria-hidden="true">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div>
+        <div class="orbit-axis horizontal"></div><div class="orbit-axis vertical"></div>
+        <span class="orbit-pi">π</span><span class="orbit-node node-one"></span><span class="orbit-node node-two"></span>
+        <span class="coordinate coordinate-one">3.1415926535</span><span class="coordinate coordinate-two">∞ POSSIBILITIES</span>
+        <span class="art-label">CONSTANT No. 001</span>
+      </div>
+    </section>
+
+    <section class="search-panel" aria-label="Search pi">
+      <form id="search-form" novalidate>
+        <div class="search-topline"><label for="digits" class="eyebrow">WHAT'S YOUR NUMBER?</label><span id="input-count" class="mono muted">0 / 100</span></div>
+        <div class="input-row">
+          <input id="digits" name="digits" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" placeholder="Enter a sequence of digits" maxlength="140" aria-describedby="input-hint input-error">
+          <button id="search-button" class="primary-button" type="submit"><span>Find in π</span><svg width="21" height="21" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8"/></svg></button>
+        </div>
+        <p id="input-error" class="input-error" role="alert" hidden></p>
+        <div class="search-options">
+          <div class="examples"><span class="muted" id="input-hint">Try a little curiosity</span><button type="button" data-example="123456">123456 <span>↗</span></button><button type="button" data-example="999999">999999 <span>↗</span></button><button type="button" id="surprise-button">Surprise me <span>✧</span></button></div>
+          <div class="depth-control"><label for="depth">Search depth</label><select id="depth"><option value="1000000">1 million</option><option value="10000000">10 million</option><option value="100000000">100 million</option><option value="1000000000" selected>1 billion</option></select></div>
+        </div>
+      </form>
+      <div id="search-progress" class="search-progress" hidden aria-live="polite">
+        <div class="progress-heading"><span class="progress-title"><span class="spinner"></span><span id="progress-label">Following the digits…</span></span><button type="button" id="cancel-button" class="text-button">Cancel</button></div>
+        <div class="progress-track"><div id="progress-fill"></div></div>
+        <div class="progress-details mono"><span id="progress-count">0 digits searched</span><span id="progress-percent">0%</span></div>
+      </div>
+    </section>
+
+    <section id="result" class="result-section" aria-live="polite" tabindex="-1" hidden></section>
+
+    <section id="beginning" class="beginning" aria-label="The beginning of pi">
+      <div class="section-caption"><span>AN INFINITE JOURNEY STARTS HERE</span><span class="mono">π =</span></div>
+      <div class="digit-ribbon" aria-hidden="true"><span class="ribbon-integer">3.</span>1415926535<span class="ribbon-highlight">8979323846</span>2643383279<span class="ribbon-muted">5028841971</span></div>
+      <div class="ribbon-footnote"><span>Every digit has an address. Let's find yours.</span><span class="mono">01 — 40</span></div>
+    </section>
+
+    <section class="details-grid" aria-label="About this explorer">
+      <div class="detail-item"><div class="detail-icon" aria-hidden="true">↳</div><div><h2>1 billion digits deep</h2><p>A vast, real dataset. Ready to explore.</p></div></div>
+      <div class="detail-item"><div class="detail-icon" aria-hidden="true">ϟ</div><div><h2>Built to keep up</h2><p>Smart downloads. Faster repeat searches.</p></div></div>
+      <div class="detail-item"><div class="detail-icon" aria-hidden="true">⌘</div><div><h2>Your curiosity stays yours</h2><p>Your search runs right in your browser.</p></div></div>
+    </section>
+  </main>
+
+  <footer class="site-footer wrap"><span>A little perspective on an endless number.</span><span class="footer-right"><span id="cache-status">DIGITS ON DEMAND</span><span class="footer-pi" aria-hidden="true">π</span></span></footer>
+
+  <dialog id="about-dialog">
+    <div class="dialog-heading"><span class="eyebrow">INSIDE THE ATLAS</span><button type="button" class="icon-button" id="close-about" aria-label="Close">×</button></div>
+    <h2>One number.<br>A billion places.</h2>
+    <p>Pi never ends. This atlas searches its first <strong>1,000,000,000 decimal digits</strong> for your exact sequence, including any leading zeros.</p>
+    <p><strong>How positions work</strong><br>We start counting after the decimal point. In 3.14159, the first “1” is at position 1, and “4159” begins at position 2.</p>
+    <p><strong>Fast, without the heavy lifting</strong><br>Digits load in small chunks as your search advances. A background worker keeps the page responsive, and downloaded chunks are cached on your device when your browser allows it. A full billion-digit search may download about 470 MB the first time. Searches stop as soon as a match is found.</p>
+    <p><strong>A finite window into pi</strong><br>A sequence might not occur within this dataset. “Not found” means only that it wasn't found within your selected search depth.</p>
+    <p class="source-note">The number base is your <strong>1b.txt</strong> from <strong>1b.zip</strong>. All one billion decimal digits are packaged directly from that file and hosted with this site. Your number is never sent to a search server.</p>
+    <button type="button" id="clear-cache" class="secondary-button">Clear downloaded digits</button><p id="cache-message" class="muted small" aria-live="polite"></p>
+  </dialog>
+</body>
+</html>
